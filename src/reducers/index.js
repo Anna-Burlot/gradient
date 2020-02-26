@@ -1,10 +1,5 @@
 import {
-  CHANGE_DIRECTION_TO_RIGHT,
-  CHANGE_DIRECTION_TO_LEFT,
-  CHANGE_DIRECTION_TO_45,
-  CHANGE_DIRECTION_TO_135,
-  CHANGE_DIRECTION_TO_225,
-  CHANGE_DIRECTION_TO_315,
+  CHANGE_DIRECTION,
   RANDOMIZE_FIRST_COLOR,
   RANDOMIZE_LAST_COLOR
 } from "src/actions";
@@ -26,35 +21,11 @@ const initialState = {
 // - un state modifié en fonction de l'action
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case CHANGE_DIRECTION_TO_RIGHT:
+    case CHANGE_DIRECTION:
+      console.log(action.direction);
       return {
         ...state,
-        direction: "90deg"
-      };
-    case CHANGE_DIRECTION_TO_LEFT:
-      return {
-        ...state,
-        direction: "270deg"
-      };
-    case CHANGE_DIRECTION_TO_45:
-      return {
-        ...state,
-        direction: "45deg"
-      };
-    case CHANGE_DIRECTION_TO_135:
-      return {
-        ...state,
-        direction: "135deg"
-      };
-    case CHANGE_DIRECTION_TO_225:
-      return {
-        ...state,
-        direction: "225deg"
-      };
-    case CHANGE_DIRECTION_TO_315:
-      return {
-        ...state,
-        direction: "315deg"
+        direction: action.direction
       };
     case RANDOMIZE_LAST_COLOR:
       return {

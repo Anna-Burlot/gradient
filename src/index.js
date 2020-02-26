@@ -3,12 +3,7 @@ import store from "src/store";
 import {
   randomizeLastColor,
   randomizeFirstColor,
-  changeDirectionToLeft,
-  changeDirectionToRight,
-  changeDirectionTo45,
-  changeDirectionTo135,
-  changeDirectionTo225,
-  changeDirectionTo315
+  changeDirection
 } from "src/actions";
 import { randomHexColor, generateSpanColor } from "./utils";
 
@@ -78,32 +73,10 @@ document.getElementById("randLast").addEventListener("click", () => {
   store.dispatch(randomizeLastColor(colorToPass));
 });
 
-document.getElementById("toLeft").addEventListener("click", () => {
-  store.dispatch(changeDirectionToLeft());
-});
-
-// lors d'une intéraction
-document.getElementById("toRight").addEventListener("click", () => {
-  // on émet un intention = on dispatche une action = l'action attérit dans le reducer = le state évolue en fonction de l'action
-  store.dispatch(changeDirectionToRight());
-});
-
-document.getElementById("to45").addEventListener("click", () => {
-  // on émet un intention = on dispatche une action = l'action attérit dans le reducer = le state évolue en fonction de l'action
-  store.dispatch(changeDirectionTo45());
-});
-
-document.getElementById("to135").addEventListener("click", () => {
-  // on émet un intention = on dispatche une action = l'action attérit dans le reducer = le state évolue en fonction de l'action
-  store.dispatch(changeDirectionTo135());
-});
-
-document.getElementById("to225").addEventListener("click", () => {
-  // on émet un intention = on dispatche une action = l'action attérit dans le reducer = le state évolue en fonction de l'action
-  store.dispatch(changeDirectionTo225());
-});
-
-document.getElementById("to315").addEventListener("click", () => {
-  // on émet un intention = on dispatche une action = l'action attérit dans le reducer = le state évolue en fonction de l'action
-  store.dispatch(changeDirectionTo315());
-});
+const degrees = document.getElementsByClassName("deg");
+// eslint-disable-next-line no-restricted-syntax
+for (let degree of degrees) {
+  degree.addEventListener("click", event => {
+    store.dispatch(changeDirection(event.target.id));
+  });
+}
