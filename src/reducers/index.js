@@ -1,7 +1,7 @@
 import {
-  CHANGE_DIRECTION,
   RANDOMIZE_FIRST_COLOR,
-  RANDOMIZE_LAST_COLOR
+  RANDOMIZE_LAST_COLOR,
+  CHANGE_DIRECTION
 } from "src/actions";
 
 // == initialState
@@ -12,21 +12,8 @@ const initialState = {
   nbColors: 0
 };
 
-// = le reducer / entonnoir
-// son rôle : traduire une intention(action) vers une modification du state
-// Entrées :
-// - le state actuel
-// - une action = une intention
-// Sortie :
-// - un state modifié en fonction de l'action
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case CHANGE_DIRECTION:
-      console.log(action.direction);
-      return {
-        ...state,
-        direction: action.direction
-      };
     case RANDOMIZE_LAST_COLOR:
       return {
         ...state,
@@ -38,6 +25,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         nbColors: state.nbColors + 1,
         firstColor: action.color
+      };
+    case CHANGE_DIRECTION:
+      return {
+        ...state,
+        direction: action.direction
       };
     default:
       return state;
